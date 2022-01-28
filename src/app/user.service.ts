@@ -16,4 +16,9 @@ export class UserService {
     return this.httpClient.get<Users[]>("http://localhost:8080/api/v1/users");
   }
 
+  getAllUserLoginDetail(emailId:String):Observable<Users>
+  {
+    return this.httpClient.get<Users>("http://localhost:8080/api/v1/users/email/"+emailId);
+  }
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { Router } from '@angular/router';
+import { Users } from 'src/app/users';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -16,19 +18,47 @@ export class UserLoginComponent implements OnInit {
   constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
-    this.userEmailId="admin@root.com";
-    this.userPassword="root"
+    this.userEmailId="";
+    this.userPassword=""
+   
 
   }
 
+  
   userLogin(){
-    if(this.userEmailId.includes("admin") && this.userPassword === "root")
-    {
-      console.log("Inside Login",this.userEmailId);
-      this.router.navigate(["app-user-home"]);
-      
-    }
-    
+
+      this.userService.getAllUserLoginDetail(this.userEmailId).subscribe(
+        (response:Users) =>{
+          
+          //console.log(response);
+          if(this.userEmailId == response.emailId && this.userPassword === response.password)
+          {
+            //console.log("Inside Login",this.userEmailId);
+            Swal.fire({
+              title: 'Success!',
+              text: 'Login Successfull!!',
+              icon: 'success'
+            })
+            this.router.navigate(["app-user-home"]);
+          }
+          else{
+            Swal.fire({
+              title: 'Error!',
+              text: 'Please check your credentials!!',
+              icon: 'error'
+            })
+          }
+        },
+        (error)=>{
+          //console.log(error.error.message);
+          Swal.fire({
+            title: 'Error!',
+            text: error.error.message,
+            icon: 'error'
+          })
+        }
+        
+      );
   }
 
 

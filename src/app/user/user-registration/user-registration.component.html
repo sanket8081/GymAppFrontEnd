@@ -1,0 +1,52 @@
+<div class="card-background">
+    <div id="card">
+      <div id="card-content">
+        <div id="card-title">
+          <h2>User Registration</h2>
+          <div class="underline-title"></div>
+        </div>
+        <form method="post" class="form">
+          <label for="user-name" style="padding-top:13px">
+            &nbsp;User Full Name
+          </label>
+        <input id="user-name" class="form-content" type="text"  autocomplete="on" [(ngModel)]="userName" name="userName" ngRequired=true />
+        <div class="form-border"></div>
+        <label for="user-contactNumber" style="padding-top:13px">
+            &nbsp;Contact Number
+          </label>
+        <input id="user-contactNumber" class="form-content" type="tel"  autocomplete="on" [(ngModel)]="contactNumber" name="contactNumber" required pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+        <div class="form-border"></div>
+        <label for="user-address" style="padding-top:22px">&nbsp;Address
+        </label>
+      <textarea id="user-address" class="form-content"  [(ngModel)]="address" name="address" required ></textarea>
+      <div class="form-border"></div>
+        <label for="user-dob" style="padding-top:13px">
+            &nbsp;Date Of Birth
+          </label>
+        <input id="user-dob" class="form-content" type="date"  autocomplete="on" [(ngModel)]="dob" name="dob" required />
+        <div class="form-border"></div>
+        <label for="user-isAdmin" style="padding-top:13px">
+            &nbsp;Is Admin?
+          </label>
+          <select class="form-content" [(ngModel)]="isAdmin" name="isAdmin">
+              <option value="Y" >Yes</option>
+              <option value="N" selected>No</option>
+            </select>
+      <div class="form-border"></div>
+        <label for="user-email" style="padding-top:13px">
+            &nbsp;Email
+          </label>
+        <input id="user-email" class="form-content" type="email"  autocomplete="on" [(ngModel)]="userEmailId" name="userEmailId" required />
+        <div class="form-border"></div>
+          <label for="user-password" style="padding-top:22px">&nbsp;Password
+            </label>
+          <input id="user-password" class="form-content" type="password"  [(ngModel)]="userPassword" name="userPassword" required />
+          <div class="form-border"></div>
+          <input id="submit-btn" type="submit" (click)='userRegister();' name="submit" value="LOGIN" />
+          <a routerLink="/" id="signup">Already have account?</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
